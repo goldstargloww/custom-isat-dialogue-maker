@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://opj1x7g4mky7"]
+[gd_scene load_steps=21 format=3 uid="uid://opj1x7g4mky7"]
 
 [ext_resource type="Texture2D" uid="uid://dhifq1uenx0e8" path="res://assets/border.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://d20pnmcb37kyi" path="res://sub_viewport.gd" id="1_dg77c"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://prbdseeevms1" path="res://offset_slider.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://veiaxuieqtvu" path="res://offset_direct_edit.gd" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://j1jutiixj3cd" path="res://export_gif_dialog.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
@@ -181,6 +182,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "export png"
 
+[node name="ExportGIFButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "export gif"
+
 [node name="InfoButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -264,15 +270,21 @@ button_pressed = true
 text = "trim transparency on export"
 
 [node name="ExportPNGDialog" type="FileDialog" parent="."]
+title = "Export PNG"
 access = 2
 use_native_dialog = true
 script = ExtResource("11_efxa6")
+
+[node name="ExportGIFDialog" type="FileDialog" parent="."]
+title = "Export GIF"
+access = 2
+use_native_dialog = true
+script = ExtResource("13_w48qg")
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
 transparent_bg = false
 initial_position = 1
 size = Vector2i(700, 501)
-visible = true
 always_on_top = true
 transparent = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_dg77c")
@@ -499,6 +511,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" to="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" method="_on_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportGIFButton" to="ExportGIFDialog" method="_on_export_gif_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/InfoButton" to="PopupPanel" method="_on_info_button_pressed"]
 [connection signal="text_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_text_edit_text_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" to="SubViewportContainer/SubViewport/NinePatchRect/CTCArrow" method="_on_ctc_visible_button_toggled"]
@@ -511,3 +524,4 @@ vertical_alignment = 1
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_offset_direct_edit_value_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/CheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
 [connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]
+[connection signal="file_selected" from="ExportGIFDialog" to="SubViewportContainer/SubViewport" method="_on_export_gif_dialog_file_selected"]
