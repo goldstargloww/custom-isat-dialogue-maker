@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b0rs6i5t55syo"]
+
+[node name="Portrait Layer" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 2

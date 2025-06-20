@@ -1,0 +1,513 @@
+[gd_scene load_steps=20 format=3 uid="uid://opj1x7g4mky7"]
+
+[ext_resource type="Texture2D" uid="uid://dhifq1uenx0e8" path="res://assets/border.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://d20pnmcb37kyi" path="res://sub_viewport.gd" id="1_dg77c"]
+[ext_resource type="Texture2D" uid="uid://bt0d1oh0m7uiw" path="res://assets/click_to_continue_arrow.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://df0lqq22oaloi" path="res://portrait.gd" id="3_1bvp3"]
+[ext_resource type="FontFile" uid="uid://dkn0hdw2ht4pa" path="res://assets/VCR_OSD_MONO.ttf" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://wbi8vhbcua7b" path="res://ctc_arrow.gd" id="3_272bh"]
+[ext_resource type="Script" uid="uid://75wqarapnjr3" path="res://add_layer_button.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://wsmuyef3rt3r" path="res://dialogue_text.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://6jb5airgylga" path="res://in_settings_v_box.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://prbdseeevms1" path="res://offset_slider.gd" id="9_kek77"]
+[ext_resource type="Script" uid="uid://veiaxuieqtvu" path="res://offset_direct_edit.gd" id="10_4c57u"]
+[ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vw27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bvp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lquwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Node" type="Node"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(816, 624)
+render_target_update_mode = 4
+script = ExtResource("1_dg77c")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+anchor_mode = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(816, 180)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_0xm2m")
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="CTCArrow" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport/NinePatchRect"]
+position = Vector2(784, 153)
+sprite_frames = SubResource("SpriteFrames_5vw27")
+script = ExtResource("3_272bh")
+
+[node name="DialogueText" type="RichTextLabel" parent="SubViewportContainer/SubViewport/NinePatchRect"]
+z_index = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = 21.0
+offset_right = 800.0
+offset_bottom = 163.0
+theme_override_fonts/normal_font = ExtResource("3_7mycd")
+theme_override_fonts/mono_font = ExtResource("3_7mycd")
+theme_override_fonts/italics_font = ExtResource("3_7mycd")
+theme_override_fonts/bold_italics_font = ExtResource("3_7mycd")
+theme_override_fonts/bold_font = ExtResource("3_7mycd")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+scroll_active = false
+justification_flags = 160
+script = ExtResource("3_lquwl")
+
+[node name="Portrait" type="Control" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("3_1bvp3")
+
+[node name="LayersMarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -127.0
+offset_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LayersMarginContainer"]
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="LayersVBox" type="VBoxContainer" parent="LayersMarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AddLayerButton" type="Button" parent="LayersMarginContainer/ScrollContainer/LayersVBox"]
+layout_mode = 2
+text = "add layer"
+script = ExtResource("3_h2yge")
+
+[node name="SettingsMarginContainer" type="MarginContainer" parent="."]
+offset_right = 500.0
+offset_bottom = 250.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsMarginContainer"]
+layout_mode = 2
+
+[node name="TopButtonsHBox" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "settings"
+
+[node name="ExportPNGButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "export png"
+
+[node name="InfoButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "info"
+
+[node name="InSettingsVBox" type="VBoxContainer" parent="SettingsMarginContainer/SettingsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("8_5vw27")
+
+[node name="TextEdit" type="TextEdit" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "dialogue text here..."
+scroll_fit_content_height = true
+
+[node name="SettingsHBox" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
+layout_mode = 2
+
+[node name="SettingsLeft" type="VBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="FontSettingsLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "font"
+
+[node name="Label" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+layout_mode = 2
+text = "portrait offset"
+
+[node name="CTCVisibleButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+layout_mode = 2
+button_pressed = true
+text = "show CTC arrow"
+
+[node name="SettingsRight" type="VBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FontSettingsOption" type="OptionButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "VCR OSD MONO"
+popup/item_0/id = 0
+popup/item_1/text = "BestTen-CRT"
+popup/item_1/id = 1
+
+[node name="OffsetSlider" type="HSlider" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+script = ExtResource("9_kek77")
+
+[node name="OffsetSliderDetails" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+layout_mode = 2
+
+[node name="ResetOffsetButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "reset portrait offset"
+
+[node name="OffsetDirectEdit" type="SpinBox" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails"]
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.01
+alignment = 1
+script = ExtResource("10_4c57u")
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
+layout_mode = 2
+button_pressed = true
+text = "trim transparency on export"
+
+[node name="ExportPNGDialog" type="FileDialog" parent="."]
+access = 2
+use_native_dialog = true
+script = ExtResource("11_efxa6")
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+transparent_bg = false
+initial_position = 1
+size = Vector2i(700, 501)
+visible = true
+always_on_top = true
+transparent = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_dg77c")
+script = ExtResource("13_ycdy4")
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
+offset_right = 700.0
+offset_bottom = 501.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="InfoHeader" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "dialogue supports bbcode!
+relevant examples:"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ShakingTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[shake]shaking text[/shake]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ShakingTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[shake]shaking text[/shake]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="WavingTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[wave]waving text[/wave]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="WavingTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[wave]waving text[/wave]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="WishTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "★ [wish]wish text[/wish]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="WishTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[outline_size=5][outline_color=#555]wish text"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BigTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "★ [big]big text[/big]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BigTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=36]big text"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="SmallTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "★ [small]small text[/small]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="SmallTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=12]small text"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoldTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[b]bold text[/b]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BoldTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[b]bold text[/b]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ItalicTextInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[i]italic text[/i]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ItalicTextExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]italic text[/i]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="FontSizeInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[font_size=12]font size 12[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="FontSizeExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=12]font size 12[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorNameInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[color=red]color name[/color]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ColorNameExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[color=red]color name[/color]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ColorHexInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[color=00FF00]hex code[/color]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ColorHexExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[color=00FF00]hex code[/color]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BracketsInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[lb]escaped square brackets[rb]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BracketsExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[lb]escaped square brackets[rb]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RainbowInstruction" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[rainbow]rainbow text[/rainbow]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RainbowExample" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[rainbow]rainbow text[/rainbow]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="InfoFooter" type="RichTextLabel" parent="PopupPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "tags marked with ★ are custom
+more options listed at [color=deep_sky_blue][url=https://docs.godotengine.org/en/latest/tutorials/ui/bbcode_in_richtextlabel.html#reference]godot's bbcode docs[/url][/color]!
+
+tool by [color=FFAE00][url=https://github.com/goldstargloww/custom-isat-dialogue-maker]🜚 goldstargloww ✧[/url][/color]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="has_portrait" from="SubViewportContainer/SubViewport/Portrait" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_portrait_has_portrait"]
+[connection signal="pressed" from="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" to="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" method="_on_pressed"]
+[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/InfoButton" to="PopupPanel" method="_on_info_button_pressed"]
+[connection signal="text_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_text_edit_text_changed"]
+[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" to="SubViewportContainer/SubViewport/NinePatchRect/CTCArrow" method="_on_ctc_visible_button_toggled"]
+[connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FontSettingsOption" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_font_settings_option_item_selected"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" to="SubViewportContainer/SubViewport/Portrait" method="_on_offset_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" method="_on_offset_slider_value_changed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SubViewportContainer/SubViewport/Portrait" method="_on_reset_offset_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_reset_offset_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" method="_on_reset_offset_button_pressed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_offset_direct_edit_value_changed"]
+[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/CheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
+[connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]
