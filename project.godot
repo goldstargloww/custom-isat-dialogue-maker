@@ -14,6 +14,7 @@ config/name="custom isat dialogue maker"
 config/version="1.0.0"
 run/main_scene="uid://opj1x7g4mky7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="uid://cq4yk1gmgquyp"
 
 [display]
 
