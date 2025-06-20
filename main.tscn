@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://opj1x7g4mky7"]
+[gd_scene load_steps=28 format=3 uid="uid://opj1x7g4mky7"]
 
 [ext_resource type="Texture2D" uid="uid://dhifq1uenx0e8" path="res://assets/border.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://d20pnmcb37kyi" path="res://sub_viewport.gd" id="1_dg77c"]
@@ -6,13 +6,21 @@
 [ext_resource type="Script" uid="uid://df0lqq22oaloi" path="res://portrait.gd" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://dkn0hdw2ht4pa" path="res://assets/VCR_OSD_MONO.ttf" id="3_7mycd"]
 [ext_resource type="Script" uid="uid://wbi8vhbcua7b" path="res://ctc_arrow.gd" id="3_272bh"]
+[ext_resource type="Script" uid="uid://cpqtb0708mq6f" path="res://dialogue_box.gd" id="3_getpj"]
 [ext_resource type="Script" uid="uid://75wqarapnjr3" path="res://add_layer_button.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://wsmuyef3rt3r" path="res://dialogue_text.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://6jb5airgylga" path="res://in_settings_v_box.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://c5vjice3a8eai" path="res://mode_button.gd" id="9_2cqfq"]
 [ext_resource type="Script" uid="uid://prbdseeevms1" path="res://offset_slider.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://veiaxuieqtvu" path="res://offset_direct_edit.gd" id="10_4c57u"]
+[ext_resource type="Script" uid="uid://n0p32kte0umw" path="res://offset_label.gd" id="10_vivmo"]
 [ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://c44aavrqimbqp" path="res://offset_slider_details.gd" id="11_w48qg"]
+[ext_resource type="Script" uid="uid://5c52rjeqmoap" path="res://box_height_label.gd" id="12_82xsv"]
 [ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://bywfoxyhfjhfx" path="res://box_height_slider.gd" id="15_yaehf"]
+[ext_resource type="Script" uid="uid://g1je33tyqfpe" path="res://box_height_direct_edit.gd" id="16_074og"]
+[ext_resource type="Script" uid="uid://5jrrqnrya0du" path="res://box_height_slider_details.gd" id="16_cegan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
 atlas = ExtResource("2_h2yge")
@@ -76,13 +84,12 @@ script = ExtResource("1_dg77c")
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 anchor_mode = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="SubViewportContainer/SubViewport"]
-custom_minimum_size = Vector2(816, 180)
+[node name="DialogueBox" type="NinePatchRect" parent="SubViewportContainer/SubViewport"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -26.0
+offset_top = -180.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("1_0xm2m")
@@ -90,13 +97,14 @@ patch_margin_left = 13
 patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
+script = ExtResource("3_getpj")
 
-[node name="CTCArrow" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport/NinePatchRect"]
+[node name="CTCArrow" type="AnimatedSprite2D" parent="SubViewportContainer/SubViewport/DialogueBox"]
 position = Vector2(784, 153)
 sprite_frames = SubResource("SpriteFrames_5vw27")
 script = ExtResource("3_272bh")
 
-[node name="DialogueText" type="RichTextLabel" parent="SubViewportContainer/SubViewport/NinePatchRect"]
+[node name="DialogueText" type="RichTextLabel" parent="SubViewportContainer/SubViewport/DialogueBox"]
 z_index = 1
 layout_mode = 0
 offset_left = 15.0
@@ -169,7 +177,14 @@ layout_mode = 2
 [node name="TopButtonsHBox" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox"]
 layout_mode = 2
 
+[node name="ModeButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "editing: portrait"
+script = ExtResource("9_2cqfq")
+
 [node name="SettingsButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -211,9 +226,16 @@ layout_mode = 2
 size_flags_vertical = 6
 text = "font"
 
-[node name="Label" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+[node name="OffsetLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
 layout_mode = 2
 text = "portrait offset"
+script = ExtResource("10_vivmo")
+
+[node name="BoxHeightLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+visible = false
+layout_mode = 2
+text = "dialogue box height"
+script = ExtResource("12_82xsv")
 
 [node name="CTCVisibleButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
 layout_mode = 2
@@ -244,6 +266,7 @@ script = ExtResource("9_kek77")
 
 [node name="OffsetSliderDetails" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
 layout_mode = 2
+script = ExtResource("11_w48qg")
 
 [node name="ResetOffsetButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails"]
 layout_mode = 2
@@ -257,6 +280,29 @@ max_value = 1.0
 step = 0.01
 alignment = 1
 script = ExtResource("10_4c57u")
+
+[node name="BoxHeightSlider" type="HSlider" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+visible = false
+layout_mode = 2
+max_value = 130.0
+script = ExtResource("15_yaehf")
+
+[node name="BoxHeightSliderDetails" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+visible = false
+layout_mode = 2
+script = ExtResource("16_cegan")
+
+[node name="ResetBoxHeightButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "reset dialogue box height"
+
+[node name="BoxHeightDirectEdit" type="SpinBox" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails"]
+layout_mode = 2
+max_value = 130.0
+rounded = true
+alignment = 1
+script = ExtResource("16_074og")
 
 [node name="CheckButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
 layout_mode = 2
@@ -495,19 +541,33 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="has_portrait" from="SubViewportContainer/SubViewport/Portrait" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_portrait_has_portrait"]
+[connection signal="has_portrait" from="SubViewportContainer/SubViewport/Portrait" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_portrait_has_portrait"]
 [connection signal="pressed" from="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" to="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" method="_on_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/OffsetLabel" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" method="_on_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/InfoButton" to="PopupPanel" method="_on_info_button_pressed"]
-[connection signal="text_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_text_edit_text_changed"]
-[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" to="SubViewportContainer/SubViewport/NinePatchRect/CTCArrow" method="_on_ctc_visible_button_toggled"]
-[connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FontSettingsOption" to="SubViewportContainer/SubViewport/NinePatchRect/DialogueText" method="_on_font_settings_option_item_selected"]
+[connection signal="text_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_text_edit_text_changed"]
+[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" to="SubViewportContainer/SubViewport/DialogueBox/CTCArrow" method="_on_ctc_visible_button_toggled"]
+[connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FontSettingsOption" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_font_settings_option_item_selected"]
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" to="SubViewportContainer/SubViewport/Portrait" method="_on_offset_slider_value_changed"]
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" method="_on_offset_slider_value_changed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SubViewportContainer/SubViewport/Portrait" method="_on_reset_offset_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_reset_offset_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/ResetOffsetButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" method="_on_reset_offset_button_pressed"]
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails/OffsetDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_offset_direct_edit_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" to="SubViewportContainer/SubViewport/DialogueBox" method="_on_box_height_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" to="SubViewportContainer/SubViewport/DialogueBox/CTCArrow" method="_on_box_height_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_box_height_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" method="_on_box_height_slider_value_changed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/ResetBoxHeightButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_reset_box_height_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/ResetBoxHeightButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" method="_on_reset_box_height_button_pressed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_box_height_direct_edit_value_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/CheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
 [connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]

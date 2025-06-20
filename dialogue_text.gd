@@ -61,3 +61,7 @@ func _on_font_settings_option_item_selected(index):
 		add_theme_font_override("bold_font", crt)
 		add_theme_font_override("bold_italics_font", crt)
 		
+
+
+func _on_box_height_slider_value_changed(value):
+	size.y = 142 - value

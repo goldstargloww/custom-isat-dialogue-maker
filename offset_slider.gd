@@ -15,3 +15,10 @@ func _on_reset_offset_button_pressed():
 
 func _on_offset_direct_edit_value_changed(new_value):
 	value = new_value
+
+
+func _on_mode_button_pressed():
+	if visible:
+		hide()
+	else:
+		show()
