@@ -265,6 +265,7 @@ text = "trim transparency on export"
 
 [node name="ExportPNGDialog" type="FileDialog" parent="."]
 access = 2
+filters = PackedStringArray("*.png")
 use_native_dialog = true
 script = ExtResource("11_efxa6")
 
@@ -272,7 +273,6 @@ script = ExtResource("11_efxa6")
 transparent_bg = false
 initial_position = 1
 size = Vector2i(700, 501)
-visible = true
 always_on_top = true
 transparent = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_dg77c")
