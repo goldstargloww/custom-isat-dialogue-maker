@@ -2,12 +2,13 @@ extends PopupPanel
 
 
 func _ready():
-	pass
+	size.y = 501
 
 
 func _process(_delta):
-	pass
+	size.y = 501
 
 
 func _on_info_button_pressed():
 	popup()
+	position.y = 61

@@ -1,8 +1,8 @@
 extends RichTextLabel
 
-@export var no_portrait_size = 785
-@export var no_portrait_pos = 15
-@export var portrait_pos_offset = 221
+@export var no_portrait_size = 771
+@export var no_portrait_pos = 18
+@export var portrait_pos_offset = 219
 
 
 func _ready():

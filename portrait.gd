@@ -16,13 +16,13 @@ func _process(_delta):
 func update_position():
 	var child_count = get_child_count()
 	if child_count > 0:
-		emit_signal("has_portrait", true)
 		var child = get_child(0)
 		
 		# i don't remember exactly what this does but it stopped it from exploding
 		child.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		
 		if child.texture != null:
+			emit_signal("has_portrait", true)
 			# clamp height at 500px
 			if child.texture.get_height() > 500:
 				size.x = 500 * (float(child.texture.get_width()) / float(child.texture.get_height()))

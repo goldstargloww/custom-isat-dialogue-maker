@@ -107,10 +107,11 @@ script = ExtResource("3_272bh")
 [node name="DialogueText" type="RichTextLabel" parent="SubViewportContainer/SubViewport/DialogueBox"]
 z_index = 1
 layout_mode = 0
-offset_left = 15.0
-offset_top = 21.0
-offset_right = 800.0
-offset_bottom = 163.0
+offset_left = 18.0
+offset_top = 22.0
+offset_right = 789.0
+offset_bottom = 142.0
+theme_override_constants/line_separation = 11
 theme_override_fonts/normal_font = ExtResource("3_7mycd")
 theme_override_fonts/mono_font = ExtResource("3_7mycd")
 theme_override_fonts/italics_font = ExtResource("3_7mycd")
@@ -317,7 +318,7 @@ script = ExtResource("11_efxa6")
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
 transparent_bg = false
-initial_position = 1
+initial_position = 2
 size = Vector2i(700, 501)
 always_on_top = true
 transparent = false
@@ -326,7 +327,7 @@ script = ExtResource("13_ycdy4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 offset_right = 700.0
-offset_bottom = 7466.0
+offset_bottom = 501.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -543,11 +544,11 @@ vertical_alignment = 1
 
 [connection signal="has_portrait" from="SubViewportContainer/SubViewport/Portrait" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_portrait_has_portrait"]
 [connection signal="pressed" from="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" to="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" method="_on_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" method="_on_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/OffsetLabel" method="_on_mode_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_mode_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" method="_on_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_mode_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]

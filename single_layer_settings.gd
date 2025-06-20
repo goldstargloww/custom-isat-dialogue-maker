@@ -14,6 +14,7 @@ func _process(_delta):
 func _on_layer_clear_button_pressed():
 	layer_rect.texture = null
 	%LayerPreview.texture = null
+	layer_rect.get_parent().update_position()
 
 
 func _on_layer_change_button_pressed():
