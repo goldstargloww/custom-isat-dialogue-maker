@@ -19,6 +19,13 @@ it's a bit finnicky and not at all perfect but hey it's fun
 - switch the font between VCR OSD MONO and BestTen-CRT (used in the english and japanese translations of the game respectively)
 - format text with bbcode
 
+# notes and tips
+
+- all of the canon characters' portrait offsets are a bit different. no i don't know why it's like that it just Is. it's not *that* important, kongkrog's tool does 0.2 for all of them, but i went ahead and figured out what's closest for all the canon characters:
+  - siffrin, mirabelle, isabeau, odile, bonnie: 0.18
+  - loop, king: 0.22
+  - euphrasie: 0.26
+
 # credits
 
 based on [insertdisc5](https://insertdisc5.com)'s game [In Stars and Time](https://instarsandtime.come) - all (3) images come from here!
