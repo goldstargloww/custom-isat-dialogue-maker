@@ -2,7 +2,7 @@
 
 ![cover image](https://github.com/user-attachments/assets/bf32fc8e-7571-4c88-ba09-1fd1eaed5de7)
 
-<!-- <p align="center"> <img src="https://badges.penpow.dev/badges/built-with/godot/cozy.svg" alt="Built with Godot"> <img src="https://badges.penpow.dev/badges/supported/windows/cozy.svg" alt="Available on Windows"> </p> -->
+<p align="center"> <img src="https://badges.penpow.dev/badges/built-with/godot/cozy.svg" alt="Built with Godot"> <img src="https://badges.penpow.dev/badges/supported/windows/cozy.svg" alt="Available on Windows"> <img src="https://files.catbox.moe/f2lap7.svg" alt="Available on Linux" height=64> </p>
 
 <p align="center"> <img src="https://img.shields.io/github/downloads/goldstargloww/custom-isat-dialogue-maker/total"> <img src="https://img.shields.io/github/last-commit/goldstargloww/custom-isat-dialogue-maker"> <img src="https://img.shields.io/github/issues/goldstargloww/custom-isat-dialogue-maker"> <img src="https://img.shields.io/github/v/release/goldstargloww/custom-isat-dialogue-maker"> </p>
 
