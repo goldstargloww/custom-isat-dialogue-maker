@@ -2,6 +2,10 @@
 
 ![cover image](https://github.com/user-attachments/assets/bf32fc8e-7571-4c88-ba09-1fd1eaed5de7)
 
+<!-- <p align="center"> <img src="https://badges.penpow.dev/badges/built-with/godot/cozy.svg" alt="Built with Godot"> <img src="https://badges.penpow.dev/badges/supported/windows/cozy.svg" alt="Available on Windows"> </p> -->
+
+<p align="center"> <img src="https://img.shields.io/github/downloads/goldstargloww/custom-isat-dialogue-maker/total"> <img src="https://img.shields.io/github/last-commit/goldstargloww/custom-isat-dialogue-maker"> <img src="https://img.shields.io/github/issues/goldstargloww/custom-isat-dialogue-maker"> <img src="https://img.shields.io/github/v/release/goldstargloww/custom-isat-dialogue-maker"> </p>
+
 an app made in godot that allows you to make custom dialogue images mimicking [insertdisc5](https://insertdisc5.com)'s game [In Stars and Time](https://instarsandtime.come)!
 
 inspired by [kongkrog](https://github.com/kongkrog)'s [isat profile customizer](https://kongkrog.github.io/isat-profile-customizer), which you should also check out because it's cool and has different features
