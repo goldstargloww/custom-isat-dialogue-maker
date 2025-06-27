@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://c44aavrqimbqp" path="res://offset_slider_details.gd" id="11_w48qg"]
 [ext_resource type="Script" uid="uid://5c52rjeqmoap" path="res://box_height_label.gd" id="12_82xsv"]
+[ext_resource type="Script" path="res://export_gif_dialog.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
 [ext_resource type="Script" uid="uid://bywfoxyhfjhfx" path="res://box_height_slider.gd" id="15_yaehf"]
 [ext_resource type="Script" uid="uid://g1je33tyqfpe" path="res://box_height_direct_edit.gd" id="16_074og"]
@@ -214,6 +215,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "export png"
 
+[node name="ExportGIFButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "export gif"
+
 [node name="InfoButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -328,10 +334,17 @@ button_pressed = true
 text = "trim transparency on export"
 
 [node name="ExportPNGDialog" type="FileDialog" parent="."]
+title = "Export PNG"
 access = 2
 filters = PackedStringArray("*.png")
 use_native_dialog = true
 script = ExtResource("11_efxa6")
+
+[node name="ExportGIFDialog" type="FileDialog" parent="."]
+title = "Export GIF"
+access = 2
+use_native_dialog = true
+script = ExtResource("13_w48qg")
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
 transparent_bg = false
@@ -570,6 +583,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]
+[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportGIFButton" to="ExportGIFDialog" method="_on_export_gif_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/InfoButton" to="PopupPanel" method="_on_info_button_pressed"]
 [connection signal="text_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_text_edit_text_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" to="SubViewportContainer/SubViewport/DialogueBox/CTCArrow" method="_on_ctc_visible_button_toggled"]
@@ -589,3 +603,4 @@ vertical_alignment = 1
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_box_height_direct_edit_value_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/CheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
 [connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]
+[connection signal="file_selected" from="ExportGIFDialog" to="SubViewportContainer/SubViewport" method="_on_export_gif_dialog_file_selected"]
