@@ -681,6 +681,8 @@ vertical_alignment = 1
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_box_height_direct_edit_value_changed"]
 [connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" method="_on_export_option_item_selected"]
 [connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportGIFButton" method="_on_export_option_item_selected"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/DurationSpinBox" to="SubViewportContainer/SubViewport" method="_on_duration_spin_box_value_changed"]
+[connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FrameCountSpinBox" to="SubViewportContainer/SubViewport" method="_on_frame_count_spin_box_value_changed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TrimCheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
 [connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]
 [connection signal="file_selected" from="ExportGIFDialog" to="SubViewportContainer/SubViewport" method="_on_export_gif_dialog_file_selected"]

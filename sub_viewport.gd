@@ -46,3 +46,11 @@ func _on_export_gif_dialog_file_selected(path: String):
 	
 	for i in range(frame_count):
 		frames[i].save_png(filename + "_" + str(i+1) + ".png")
+
+
+func _on_duration_spin_box_value_changed(value):
+	duration = value
+
+
+func _on_frame_count_spin_box_value_changed(value):
+	frame_count = value
