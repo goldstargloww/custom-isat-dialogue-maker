@@ -48,18 +48,49 @@ func _on_portrait_has_portrait(has_portrait):
 func _on_font_settings_option_item_selected(index):
 	var vcr = load("res://assets/VCR_OSD_MONO.ttf")
 	var crt = load("res://assets/BestTen-CRT.ttf")
+	
+	var slant = 0.2
+	var italic_transform = Transform2D(Vector2(1.0, slant), Vector2.DOWN, Vector2.ZERO)
+	var emboldening_factor = 0.5
+	
+	var vcr_italic = FontVariation.new()
+	var vcr_bold = FontVariation.new()
+	var vcr_bold_italic = FontVariation.new()
+	vcr_italic.base_font = vcr
+	vcr_bold.base_font = vcr
+	vcr_bold_italic.base_font = vcr
+	
+	vcr_italic.variation_transform = italic_transform
+	vcr_bold_italic.variation_transform = italic_transform
+	vcr_bold.variation_embolden = emboldening_factor
+	vcr_bold_italic.variation_embolden = emboldening_factor
+		
+	var crt_italic = FontVariation.new()
+	var crt_bold = FontVariation.new()
+	var crt_bold_italic = FontVariation.new()
+	crt_italic.base_font = crt
+	crt_bold.base_font = crt
+	crt_bold_italic.base_font = crt
+	
+	crt_italic.variation_transform = italic_transform
+	crt_bold_italic.variation_transform = italic_transform
+	crt_bold.variation_embolden = emboldening_factor
+	crt_bold_italic.variation_embolden = emboldening_factor
+
+	
+	
 	if index == 0:
 		add_theme_font_override("normal_font", vcr)
-		add_theme_font_override("mono_font", vcr)
-		add_theme_font_override("italics_font", vcr)
-		add_theme_font_override("bold_font", vcr)
-		add_theme_font_override("bold_italics_font", vcr)
+		#add_theme_font_override("mono_font", vcr)
+		add_theme_font_override("italics_font", vcr_italic)
+		add_theme_font_override("bold_font", vcr_bold)
+		add_theme_font_override("bold_italics_font", vcr_bold_italic)
 	elif index == 1:
 		add_theme_font_override("normal_font", crt)
-		add_theme_font_override("mono_font", crt)
-		add_theme_font_override("italics_font", crt)
-		add_theme_font_override("bold_font", crt)
-		add_theme_font_override("bold_italics_font", crt)
+		#add_theme_font_override("mono_font", crt)
+		add_theme_font_override("italics_font", crt_italic)
+		add_theme_font_override("bold_font", crt_bold)
+		add_theme_font_override("bold_italics_font", crt_bold_italic)
 		
 
 
