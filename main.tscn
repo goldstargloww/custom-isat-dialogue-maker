@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://opj1x7g4mky7"]
+[gd_scene load_steps=43 format=3 uid="uid://opj1x7g4mky7"]
 
 [ext_resource type="Texture2D" uid="uid://dhifq1uenx0e8" path="res://assets/border.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://d20pnmcb37kyi" path="res://sub_viewport.gd" id="1_dg77c"]
@@ -14,14 +14,25 @@
 [ext_resource type="Script" uid="uid://prbdseeevms1" path="res://offset_slider.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://veiaxuieqtvu" path="res://offset_direct_edit.gd" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://n0p32kte0umw" path="res://offset_label.gd" id="10_vivmo"]
+[ext_resource type="Script" uid="uid://cykpjk14kfbpj" path="res://export_png_button.gd" id="11_d13ii"]
 [ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://c44aavrqimbqp" path="res://offset_slider_details.gd" id="11_w48qg"]
 [ext_resource type="Script" uid="uid://5c52rjeqmoap" path="res://box_height_label.gd" id="12_82xsv"]
-[ext_resource type="Script" path="res://export_gif_dialog.gd" id="13_w48qg"]
+[ext_resource type="Script" uid="uid://csq2glmdxvocp" path="res://export_gif_button.gd" id="12_jq2sk"]
+[ext_resource type="Script" uid="uid://dqh3cvboldbs" path="res://text_edit.gd" id="13_kq58d"]
+[ext_resource type="Script" uid="uid://j1jutiixj3cd" path="res://export_gif_dialog.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://dfaosm2k5o5ru" path="res://ctc_visible_button.gd" id="15_0odxb"]
 [ext_resource type="Script" uid="uid://bywfoxyhfjhfx" path="res://box_height_slider.gd" id="15_yaehf"]
 [ext_resource type="Script" uid="uid://g1je33tyqfpe" path="res://box_height_direct_edit.gd" id="16_074og"]
 [ext_resource type="Script" uid="uid://5jrrqnrya0du" path="res://box_height_slider_details.gd" id="16_cegan"]
+[ext_resource type="Script" uid="uid://bp1ibtggnqtvy" path="res://duration_label.gd" id="16_lswn8"]
+[ext_resource type="Script" uid="uid://ccl1fpv70l4jm" path="res://frame_count_label.gd" id="17_a6jrf"]
+[ext_resource type="Script" uid="uid://n5c86l3o5j5w" path="res://export_as_label.gd" id="17_seu75"]
+[ext_resource type="Script" uid="uid://cbjnj4m5i7fj5" path="res://trim_check_button.gd" id="21_1u8w0"]
+[ext_resource type="Script" uid="uid://bniefqar7q4pw" path="res://duration_spin_box.gd" id="24_qsp4k"]
+[ext_resource type="Script" uid="uid://dmny3idaesbvu" path="res://frame_count_spin_box.gd" id="25_kq58d"]
+[ext_resource type="Script" uid="uid://bv76kfssr4iim" path="res://export_option.gd" id="26_htxhm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
 atlas = ExtResource("2_h2yge")
@@ -213,12 +224,15 @@ text = "settings"
 [node name="ExportPNGButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "export png"
+text = "export image"
+script = ExtResource("11_d13ii")
 
 [node name="ExportGIFButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "export gif"
+text = "export frames"
+script = ExtResource("12_jq2sk")
 
 [node name="InfoButton" type="Button" parent="SettingsMarginContainer/SettingsVBox/TopButtonsHBox"]
 layout_mode = 2
@@ -236,6 +250,7 @@ layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "dialogue text here..."
 scroll_fit_content_height = true
+script = ExtResource("13_kq58d")
 
 [node name="SettingsHBox" type="HBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
 layout_mode = 2
@@ -265,6 +280,28 @@ script = ExtResource("12_82xsv")
 layout_mode = 2
 button_pressed = true
 text = "show CTC arrow"
+script = ExtResource("15_0odxb")
+
+[node name="ExportAsLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "export as...	"
+script = ExtResource("17_seu75")
+
+[node name="DurationLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "duration"
+script = ExtResource("16_lswn8")
+
+[node name="FrameCountLabel" type="Label" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "frame count"
+script = ExtResource("17_a6jrf")
 
 [node name="SettingsRight" type="VBoxContainer" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox"]
 layout_mode = 2
@@ -328,10 +365,41 @@ rounded = true
 alignment = 1
 script = ExtResource("16_074og")
 
-[node name="CheckButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
+[node name="ExportOption" type="OptionButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+visible = false
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "single image"
+popup/item_0/id = 0
+popup/item_1/text = "frames"
+popup/item_1/id = 1
+script = ExtResource("26_htxhm")
+
+[node name="DurationSpinBox" type="SpinBox" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+visible = false
+layout_mode = 2
+min_value = 0.03
+max_value = 60.0
+step = 0.01
+value = 1.0
+suffix = "seconds"
+script = ExtResource("24_qsp4k")
+
+[node name="FrameCountSpinBox" type="SpinBox" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight"]
+visible = false
+layout_mode = 2
+max_value = 120.0
+value = 30.0
+suffix = "frames"
+script = ExtResource("25_kq58d")
+
+[node name="TrimCheckButton" type="CheckButton" parent="SettingsMarginContainer/SettingsVBox/InSettingsVBox"]
+visible = false
 layout_mode = 2
 button_pressed = true
 text = "trim transparency on export"
+script = ExtResource("21_1u8w0")
 
 [node name="ExportPNGDialog" type="FileDialog" parent="."]
 title = "Export PNG"
@@ -343,6 +411,7 @@ script = ExtResource("11_efxa6")
 [node name="ExportGIFDialog" type="FileDialog" parent="."]
 title = "Export GIF"
 access = 2
+filters = PackedStringArray("*.png")
 use_native_dialog = true
 script = ExtResource("13_w48qg")
 
@@ -574,13 +643,22 @@ vertical_alignment = 1
 
 [connection signal="has_portrait" from="SubViewportContainer/SubViewport/Portrait" to="SubViewportContainer/SubViewport/DialogueBox/DialogueText" method="_on_portrait_has_portrait"]
 [connection signal="pressed" from="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" to="LayersMarginContainer/ScrollContainer/LayersVBox/AddLayerButton" method="_on_pressed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TextEdit" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/OffsetLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TrimCheckButton" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/DurationLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/FrameCountLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/DurationSpinBox" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FrameCountSpinBox" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/ExportAsLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" method="_on_mode_button_mode_changed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" method="_on_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/OffsetLabel" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_mode_button_pressed"]
-[connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportGIFButton" to="ExportGIFDialog" method="_on_export_gif_button_pressed"]
@@ -601,6 +679,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/ResetBoxHeightButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_reset_box_height_button_pressed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/ResetBoxHeightButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" method="_on_reset_box_height_button_pressed"]
 [connection signal="value_changed" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails/BoxHeightDirectEdit" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_box_height_direct_edit_value_changed"]
-[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/CheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
+[connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" method="_on_export_option_item_selected"]
+[connection signal="item_selected" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportGIFButton" method="_on_export_option_item_selected"]
+[connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TrimCheckButton" to="SubViewportContainer/SubViewport" method="_on_check_button_toggled"]
 [connection signal="file_selected" from="ExportPNGDialog" to="SubViewportContainer/SubViewport" method="_on_export_png_dialog_file_selected"]
 [connection signal="file_selected" from="ExportGIFDialog" to="SubViewportContainer/SubViewport" method="_on_export_gif_dialog_file_selected"]

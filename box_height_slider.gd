@@ -17,8 +17,8 @@ func _on_reset_box_height_button_pressed():
 	value = 0
 
 
-func _on_mode_button_pressed():
-	if visible:
-		hide()
-	else:
+func _on_mode_button_mode_changed(mode_name):
+	if mode_name == "box":
 		show()
+	else:
+		hide()

@@ -1,4 +1,4 @@
-extends Label
+extends CheckButton
 
 
 func _ready():
@@ -10,7 +10,7 @@ func _process(_delta):
 
 
 func _on_mode_button_mode_changed(mode_name):
-	if mode_name == "portrait":
-		show()
-	else:
+	if mode_name == "export":
 		hide()
+	else:
+		show()

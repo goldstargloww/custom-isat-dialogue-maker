@@ -1,4 +1,4 @@
-extends Label
+extends SpinBox
 
 
 func _ready():
@@ -10,7 +10,7 @@ func _process(_delta):
 
 
 func _on_mode_button_mode_changed(mode_name):
-	if mode_name == "portrait":
+	if mode_name == "export":
 		show()
 	else:
 		hide()
