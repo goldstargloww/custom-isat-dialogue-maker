@@ -2,12 +2,6 @@ extends SubViewport
 
 var trim_transparency = true
 
-
-# https://github.com/jegor377/godot-gdgifexporter
-const GIFExporter = preload("res://gdgifexporter/exporter.gd")
-const MedianCutQuantization = preload("res://gdgifexporter/quantization/median_cut.gd")
-
-
 func _ready():
 	pass
 
@@ -31,25 +25,25 @@ func _on_check_button_toggled(toggled_on):
 
 
 func _on_export_png_dialog_file_selected(path):
+	path = path.get_basename() + ".png" # force it into a png extension
 	get_image().save_png(path)
 
 
-func _on_export_gif_dialog_file_selected(path):
-	var image = get_image()
-	image.convert(Image.FORMAT_RGBA8)
-	var exporter = GIFExporter.new(image.get_width(), image.get_height())
-	
+func _on_export_gif_dialog_file_selected(path: String):
+	var image
 	var frames = []
-	for i in range(30):
+	
+	var frame_count = 30 # number of frames to save
+	var duration = 1 # duration over which to save frames, in seconds
+	
+	for i in range(frame_count):
 		image = get_image()
-		image.convert(Image.FORMAT_RGBA8)
 		frames.append(image)
 		print("got frame ", i+1)
-		await get_tree().create_timer(1/30).timeout
-	for i in range(30):
-		print("adding frame ", i+1)
-		exporter.add_frame(frames[i], 1/30, MedianCutQuantization)
-		
-	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
-	file.store_buffer(exporter.export_file_data())
-	file.close()
+		await get_tree().create_timer(duration/frame_count).timeout
+	
+	# THANK YOU GDSCRIPT FOR THIS WONDERFUL FUNCTION
+	var filename = path.get_basename()
+	
+	for i in range(frame_count):
+		frames[i].save_png(path + "_" + str(i+1) + ".png")

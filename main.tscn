@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://prbdseeevms1" path="res://offset_slider.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://veiaxuieqtvu" path="res://offset_direct_edit.gd" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://dhj67xuc1uo8y" path="res://export_png_dialog.gd" id="11_efxa6"]
-[ext_resource type="Script" uid="uid://j1jutiixj3cd" path="res://export_gif_dialog.gd" id="13_w48qg"]
+[ext_resource type="Script" path="res://export_gif_dialog.gd" id="13_w48qg"]
 [ext_resource type="Script" uid="uid://c4x40n4q74v56" path="res://popup_panel.gd" id="13_ycdy4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
