@@ -426,7 +426,7 @@ script = ExtResource("13_ycdy4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 offset_right = 700.0
-offset_bottom = 501.0
+offset_bottom = 7466.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -647,17 +647,17 @@ vertical_alignment = 1
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/OffsetLabel" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/BoxHeightLabel" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/CTCVisibleButton" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/ExportAsLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/DurationLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/FrameCountLabel" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSlider" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/OffsetSliderDetails" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSlider" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/BoxHeightSliderDetails" method="_on_mode_button_mode_changed"]
-[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TrimCheckButton" method="_on_mode_button_mode_changed"]
-[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/DurationLabel" method="_on_mode_button_mode_changed"]
-[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/FrameCountLabel" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/DurationSpinBox" method="_on_mode_button_mode_changed"]
 [connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/FrameCountSpinBox" method="_on_mode_button_mode_changed"]
-[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsLeft/ExportAsLabel" method="_on_mode_button_mode_changed"]
-[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/SettingsHBox/SettingsRight/ExportOption" method="_on_mode_button_mode_changed"]
+[connection signal="mode_changed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox/TrimCheckButton" method="_on_mode_button_mode_changed"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" to="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ModeButton" method="_on_pressed"]
 [connection signal="toggled" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/SettingsButton" to="SettingsMarginContainer/SettingsVBox/InSettingsVBox" method="_on_settings_button_toggled"]
 [connection signal="pressed" from="SettingsMarginContainer/SettingsVBox/TopButtonsHBox/ExportPNGButton" to="ExportPNGDialog" method="_on_export_png_button_pressed"]

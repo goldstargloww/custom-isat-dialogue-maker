@@ -26,3 +26,12 @@ func _on_file_dialog_file_selected(path):
 	layer_rect.texture = image
 	%LayerPreview.texture = image
 	layer_rect.get_parent().update_position()
+
+
+func _on_layer_visibility_button_pressed():
+	if layer_rect.visible:
+		layer_rect.hide()
+		%LayerVisibilityButton.text = "visible: off"
+	else:
+		layer_rect.show()
+		%LayerVisibilityButton.text = "visible: on"

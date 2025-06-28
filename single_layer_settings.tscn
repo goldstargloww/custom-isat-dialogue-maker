@@ -24,6 +24,11 @@ text = "change image"
 layout_mode = 2
 text = "clear image"
 
+[node name="LayerVisibilityButton" type="Button" parent="LayerButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "visible: on"
+
 [node name="LayerPreviewContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -43,4 +48,5 @@ use_native_dialog = true
 
 [connection signal="pressed" from="LayerButtons/LayerChangeButton" to="." method="_on_layer_change_button_pressed"]
 [connection signal="pressed" from="LayerButtons/LayerDeleteButton" to="." method="_on_layer_clear_button_pressed"]
+[connection signal="pressed" from="LayerButtons/LayerVisibilityButton" to="." method="_on_layer_visibility_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
