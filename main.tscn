@@ -136,6 +136,9 @@ offset_left = 18.0
 offset_top = 22.0
 offset_right = 789.0
 offset_bottom = 142.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_constants/line_separation = 11
 theme_override_fonts/normal_font = ExtResource("3_7mycd")
 theme_override_fonts/mono_font = ExtResource("3_7mycd")
@@ -426,7 +429,7 @@ script = ExtResource("13_ycdy4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 offset_right = 700.0
-offset_bottom = 7466.0
+offset_bottom = 501.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
