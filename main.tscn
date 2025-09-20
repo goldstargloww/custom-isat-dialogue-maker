@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://opj1x7g4mky7"]
+[gd_scene load_steps=44 format=3 uid="uid://opj1x7g4mky7"]
 
 [ext_resource type="Texture2D" uid="uid://dhifq1uenx0e8" path="res://assets/border.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cso2vklpgxf2j" path="res://main.gd" id="1_4k2k6"]
 [ext_resource type="Script" uid="uid://d20pnmcb37kyi" path="res://sub_viewport.gd" id="1_dg77c"]
 [ext_resource type="Texture2D" uid="uid://bt0d1oh0m7uiw" path="res://assets/click_to_continue_arrow.png" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://df0lqq22oaloi" path="res://portrait.gd" id="3_1bvp3"]
@@ -70,18 +71,18 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="FontVariation" id="FontVariation_getpj"]
+[sub_resource type="FontVariation" id="FontVariation_d13ii"]
 base_font = ExtResource("3_7mycd")
-variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+variation_embolden = 0.5
 
 [sub_resource type="FontVariation" id="FontVariation_ryguw"]
 base_font = ExtResource("3_7mycd")
 variation_embolden = 0.5
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_d13ii"]
+[sub_resource type="FontVariation" id="FontVariation_getpj"]
 base_font = ExtResource("3_7mycd")
-variation_embolden = 0.5
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
 bg_color = Color(0.12, 0.12, 0.12, 1)
@@ -91,6 +92,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="Node" type="Node"]
+script = ExtResource("1_4k2k6")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -138,18 +140,18 @@ offset_right = 789.0
 offset_bottom = 142.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
 theme_override_constants/line_separation = 11
+theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_7mycd")
-theme_override_fonts/mono_font = ExtResource("3_7mycd")
-theme_override_fonts/italics_font = SubResource("FontVariation_getpj")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ryguw")
 theme_override_fonts/bold_font = SubResource("FontVariation_d13ii")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ryguw")
+theme_override_fonts/italics_font = SubResource("FontVariation_getpj")
+theme_override_fonts/mono_font = ExtResource("3_7mycd")
+theme_override_font_sizes/normal_font_size = 23
+theme_override_font_sizes/bold_font_size = 23
 theme_override_font_sizes/bold_italics_font_size = 23
 theme_override_font_sizes/italics_font_size = 23
 theme_override_font_sizes/mono_font_size = 23
-theme_override_font_sizes/normal_font_size = 23
-theme_override_font_sizes/bold_font_size = 23
 bbcode_enabled = true
 scroll_active = false
 justification_flags = 160
@@ -429,7 +431,7 @@ script = ExtResource("13_ycdy4")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 offset_right = 700.0
-offset_bottom = 501.0
+offset_bottom = 7466.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
