@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://du2v8iiegpggc"]
+[gd_scene load_steps=2 format=3 uid="uid://du2v8iiegpggc"]
+
+[ext_resource type="Texture2D" uid="uid://cvu4i3bf5m1l" path="res://assets/gui/border.png" id="1_37kl0"]
 
 [node name="Node" type="Control"]
 layout_mode = 3
@@ -50,16 +52,54 @@ item_3/id = 3
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
-split_offset = 954
+theme_override_constants/separation = 8
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
-split_offset = 534
+theme_override_constants/separation = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/VSplitContainer/CenterContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(816, 180)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="VBoxContainer/HSplitContainer/VSplitContainer/CenterContainer/SubViewportContainer/SubViewport"]
+anchor_mode = 0
+
+[node name="DialogueBox" type="Control" parent="VBoxContainer/HSplitContainer/VSplitContainer/CenterContainer/SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HSplitContainer/VSplitContainer/CenterContainer/SubViewportContainer/SubViewport/DialogueBox"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_37kl0")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer"]
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HSplitContainer"]
