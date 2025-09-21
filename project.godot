@@ -24,6 +24,11 @@ window/size/window_height_override=720
 window/stretch/aspect="ignore"
 window/stretch/scale_mode="integer"
 
+[gui]
+
+theme/default_font_antialiasing=2
+theme/default_font_multichannel_signed_distance_field=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
