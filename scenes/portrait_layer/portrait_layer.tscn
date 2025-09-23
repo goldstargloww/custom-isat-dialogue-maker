@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://crpt3m8egajbk"]
+
+[ext_resource type="Script" uid="uid://clijd1kpi25is" path="res://scenes/portrait_layer/portrait_layer.gd" id="1_8rov5"]
+
+[node name="PortraitLayer" type="TextureRect"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_8rov5")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 1, 0, 1)
+border_width = 2.0
+editor_only = false

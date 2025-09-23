@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bs684pdmvcysr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yulhu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8srx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkq4x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mm0e7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyt8c"]
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_yulhu")
+Label/styles/focus = SubResource("StyleBoxEmpty_f8srx")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_rkq4x")
+TabBar/styles/tab_focus = null
+Tree/styles/focus = SubResource("StyleBoxEmpty_mm0e7")
+Tree/styles/hovered_selected_focus = SubResource("StyleBoxEmpty_wyt8c")

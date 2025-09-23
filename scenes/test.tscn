@@ -1,0 +1,155 @@
+[gd_scene load_steps=4 format=3 uid="uid://du2v8iiegpggc"]
+
+[ext_resource type="Texture2D" uid="uid://cvu4i3bf5m1l" path="res://assets/gui/border.png" id="1_bl13t"]
+[ext_resource type="Theme" uid="uid://bs684pdmvcysr" path="res://theme/no_focus.tres" id="1_iyx0m"]
+[ext_resource type="Script" uid="uid://bnq613ujp0xak" path="res://scenes/add_layer_button.gd" id="2_bl13t"]
+
+[node name="Node" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iyx0m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+oversampling_override = 1.0
+title = "File"
+item_count = 1
+item_0/text = "Export"
+item_0/id = 0
+
+[node name="Edit" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+item_count = 1
+item_0/text = "Settings"
+item_0/id = 0
+
+[node name="View" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Help" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+item_count = 4
+item_0/text = "About"
+item_0/id = 0
+item_1/text = "BBCode"
+item_1/id = 1
+item_2/text = "GitHub repository"
+item_2/id = 2
+item_3/text = "Check for updates"
+item_3/id = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+theme_override_constants/separation = 8
+
+[node name="LeftSide" type="VSplitContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Preview" type="CenterContainer" parent="VBoxContainer/HSplitContainer/LeftSide"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HSplitContainer/LeftSide/Preview"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(816, 180)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer/SubViewport"]
+anchor_mode = 0
+
+[node name="DialogueBox" type="Control" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer/SubViewport/DialogueBox"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_bl13t")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Portrait" type="Control" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/HSplitContainer/LeftSide/Preview/SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 2.0
+editor_only = false
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HSplitContainer/LeftSide"]
+layout_mode = 2
+
+[node name="RightSide" type="PanelContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/RightSide"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Portrait" type="Control" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LayerList" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AddLayerButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer"]
+layout_mode = 2
+text = "add layer"
+script = ExtResource("2_bl13t")
+
+[node name="Nameplate" type="Control" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/AddLayerButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/AddLayerButton" method="_on_pressed"]
