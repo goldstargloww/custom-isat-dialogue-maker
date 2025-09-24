@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://637ymw1hoyc7"]
+[gd_scene load_steps=28 format=3 uid="uid://637ymw1hoyc7"]
 
 [ext_resource type="Script" uid="uid://dcrmlhkwu2s0a" path="res://scenes/layer_controls/layer_controls.gd" id="1_w655t"]
 [ext_resource type="Texture2D" uid="uid://c2clr8c37ouso" path="res://assets/gui/lucide/image.svg" id="2_vtam6"]
@@ -13,10 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://bekeooh0ka4hm" path="res://assets/gui/lucide/blend.svg" id="11_rcsnv"]
 [ext_resource type="Script" uid="uid://benpb7lw8u1bq" path="res://scenes/layer_controls/opacity_button.gd" id="12_j4c4t"]
 [ext_resource type="Texture2D" uid="uid://msr7c40ggssc" path="res://assets/gui/lucide/trash-2.svg" id="13_bg5xy"]
+[ext_resource type="Script" uid="uid://jlaa21nxa7jb" path="res://scenes/layer_controls/editors.gd" id="14_l1xgh"]
+[ext_resource type="Script" uid="uid://b2qfo2oe0y011" path="res://scenes/layer_controls/delete_button.gd" id="14_pvx1h"]
 [ext_resource type="Script" uid="uid://cklc2semc56xq" path="res://scenes/layer_controls/x_offset_h_slider.gd" id="14_vtam6"]
 [ext_resource type="Script" uid="uid://bi1xtp333vbwf" path="res://scenes/layer_controls/x_offset_spin_box.gd" id="15_rabbl"]
 [ext_resource type="Script" uid="uid://cpayva817tsbo" path="res://scenes/layer_controls/y_offset_spin_box.gd" id="17_3skkd"]
 [ext_resource type="Script" uid="uid://bpk64rwrw18vn" path="res://scenes/layer_controls/y_offset_h_slider.gd" id="17_l1xgh"]
+[ext_resource type="Script" uid="uid://dynimrtiojh23" path="res://scenes/layer_controls/x_scale_h_slider.gd" id="19_lmdu5"]
+[ext_resource type="Script" uid="uid://cta7esivxpu3k" path="res://scenes/layer_controls/x_scale_spin_box.gd" id="20_rcsnv"]
+[ext_resource type="Script" uid="uid://c61yof0sidxux" path="res://scenes/layer_controls/y_scale_h_slider.gd" id="21_j4c4t"]
+[ext_resource type="Script" uid="uid://cic7s807atrfb" path="res://scenes/layer_controls/y_scale_spin_box.gd" id="22_bg5xy"]
+[ext_resource type="Script" uid="uid://e7nxhr84qxmy" path="res://scenes/layer_controls/height_h_slider.gd" id="23_j4c4t"]
+[ext_resource type="Script" uid="uid://cd3brs8yplla6" path="res://scenes/layer_controls/height_spin_box.gd" id="24_bg5xy"]
+[ext_resource type="Script" uid="uid://rjvia3dab2yk" path="res://scenes/layer_controls/opacity_h_slider.gd" id="25_qn21d"]
+[ext_resource type="Script" uid="uid://dich2dve57qg8" path="res://scenes/layer_controls/opacity_spin_box.gd" id="26_pvx1h"]
 
 [node name="Layer" type="MarginContainer"]
 offset_right = 456.0
@@ -82,6 +92,7 @@ script = ExtResource("6_l1xgh")
 
 [node name="ScaleButton" type="Button" parent="VBoxContainer/Layer/LayerInfo/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 tooltip_text = "Resize"
 toggle_mode = true
@@ -108,26 +119,29 @@ script = ExtResource("12_j4c4t")
 layout_mode = 2
 tooltip_text = "Delete"
 icon = ExtResource("13_bg5xy")
+script = ExtResource("14_pvx1h")
 
 [node name="Editors" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+script = ExtResource("14_l1xgh")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Editors"]
+[node name="TranslateEditor" type="MarginContainer" parent="VBoxContainer/Editors"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Editors/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Editors/TranslateEditor"]
 layout_mode = 2
-columns = 4
+columns = 5
 
-[node name="XOffsetLabel" type="Label" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="XOffsetLabel" type="Label" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 text = "x offset"
 
-[node name="XOffsetHSlider" type="HSlider" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="XOffsetHSlider" type="HSlider" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -135,10 +149,10 @@ min_value = -200.0
 max_value = 200.0
 allow_greater = true
 allow_lesser = true
-tick_count = 1
+tick_count = 3
 script = ExtResource("14_vtam6")
 
-[node name="XOffsetSpinBox" type="SpinBox" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="XOffsetSpinBox" type="SpinBox" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 min_value = -200.0
 max_value = 200.0
@@ -146,15 +160,24 @@ allow_greater = true
 allow_lesser = true
 script = ExtResource("15_rabbl")
 
-[node name="XOffsetResetButton" type="Button" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="XOffsetOptionButton" type="OptionButton" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "%"
+popup/item_0/id = 1
+popup/item_1/text = "px"
+popup/item_1/id = 0
+
+[node name="XOffsetResetButton" type="Button" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 text = "reset"
 
-[node name="YOffsetLabel" type="Label" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="YOffsetLabel" type="Label" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 text = "y offset"
 
-[node name="YOffsetHSlider" type="HSlider" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="YOffsetHSlider" type="HSlider" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -162,10 +185,10 @@ min_value = -200.0
 max_value = 200.0
 allow_greater = true
 allow_lesser = true
-tick_count = 1
+tick_count = 3
 script = ExtResource("17_l1xgh")
 
-[node name="YOffsetSpinBox" type="SpinBox" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="YOffsetSpinBox" type="SpinBox" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 min_value = -200.0
 max_value = 200.0
@@ -173,9 +196,160 @@ allow_greater = true
 allow_lesser = true
 script = ExtResource("17_3skkd")
 
-[node name="YOffsetResetButton" type="Button" parent="VBoxContainer/Editors/MarginContainer/GridContainer"]
+[node name="YOffsetOptionButton" type="OptionButton" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "%"
+popup/item_0/id = 1
+popup/item_1/text = "px"
+popup/item_1/id = 0
+
+[node name="YOffsetResetButton" type="Button" parent="VBoxContainer/Editors/TranslateEditor/GridContainer"]
 layout_mode = 2
 text = "reset"
+
+[node name="ScaleEditor" type="MarginContainer" parent="VBoxContainer/Editors"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Editors/ScaleEditor"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "link x and y scale"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="XScaleLabel" type="Label" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "x scale"
+
+[node name="XScaleHSlider" type="HSlider" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 200.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+tick_count = 3
+script = ExtResource("19_lmdu5")
+
+[node name="XScaleSpinBox" type="SpinBox" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+suffix = "%"
+script = ExtResource("20_rcsnv")
+
+[node name="XScaleResetButton" type="Button" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="YScaleLabel" type="Label" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "y scale"
+
+[node name="YScaleHSlider" type="HSlider" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 200.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+tick_count = 3
+script = ExtResource("21_j4c4t")
+
+[node name="YScaleSpinBox" type="SpinBox" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+suffix = "%"
+script = ExtResource("22_bg5xy")
+
+[node name="YScaleResetButton" type="Button" parent="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="HeightEditor" type="MarginContainer" parent="VBoxContainer/Editors"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Editors/HeightEditor"]
+layout_mode = 2
+columns = 4
+
+[node name="HeightLabel" type="Label" parent="VBoxContainer/Editors/HeightEditor/GridContainer"]
+layout_mode = 2
+text = "max height"
+
+[node name="HeightHSlider" type="HSlider" parent="VBoxContainer/Editors/HeightEditor/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 1000.0
+value = 500.0
+allow_greater = true
+script = ExtResource("23_j4c4t")
+
+[node name="HeightSpinBox" type="SpinBox" parent="VBoxContainer/Editors/HeightEditor/GridContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 1000.0
+value = 500.0
+allow_greater = true
+suffix = "px"
+script = ExtResource("24_bg5xy")
+
+[node name="HeightResetButton" type="Button" parent="VBoxContainer/Editors/HeightEditor/GridContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="OpacityEditor" type="MarginContainer" parent="VBoxContainer/Editors"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Editors/OpacityEditor"]
+layout_mode = 2
+columns = 3
+
+[node name="OpacityLabel" type="Label" parent="VBoxContainer/Editors/OpacityEditor/GridContainer"]
+layout_mode = 2
+text = "opacity"
+
+[node name="OpacityHSlider" type="HSlider" parent="VBoxContainer/Editors/OpacityEditor/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+script = ExtResource("25_qn21d")
+
+[node name="OpacitySpinBox" type="SpinBox" parent="VBoxContainer/Editors/OpacityEditor/GridContainer"]
+layout_mode = 2
+value = 100.0
+script = ExtResource("26_pvx1h")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 oversampling_override = 1.0
@@ -187,13 +361,34 @@ use_native_dialog = true
 [connection signal="pressed" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/ImageButton" to="." method="_on_image_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/VisibilityButton" to="." method="_on_visibility_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/TranslateButton" to="VBoxContainer/Layer/LayerInfo/HBoxContainer/TranslateButton" method="_on_toggled"]
+[connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/TranslateButton" to="VBoxContainer/Editors" method="_on_translate_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/ScaleButton" to="VBoxContainer/Layer/LayerInfo/HBoxContainer/ScaleButton" method="_on_toggled"]
+[connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/ScaleButton" to="VBoxContainer/Editors" method="_on_scale_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/HeightButton" to="VBoxContainer/Layer/LayerInfo/HBoxContainer/HeightButton" method="_on_toggled"]
+[connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/HeightButton" to="VBoxContainer/Editors" method="_on_height_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/OpacityButton" to="VBoxContainer/Layer/LayerInfo/HBoxContainer/OpacityButton" method="_on_toggled"]
-[connection signal="value_changed" from="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetHSlider" to="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetSpinBox" method="_on_x_offset_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetSpinBox" to="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetHSlider" method="_on_x_offset_spin_box_value_changed"]
-[connection signal="pressed" from="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetResetButton" to="VBoxContainer/Editors/MarginContainer/GridContainer/XOffsetHSlider" method="_on_x_offset_reset_button_pressed"]
-[connection signal="value_changed" from="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetHSlider" to="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetSpinBox" method="_on_y_offset_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetSpinBox" to="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetHSlider" method="_on_y_offset_spin_box_value_changed"]
-[connection signal="pressed" from="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetResetButton" to="VBoxContainer/Editors/MarginContainer/GridContainer/YOffsetHSlider" method="_on_y_offset_reset_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/OpacityButton" to="VBoxContainer/Editors" method="_on_opacity_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/Layer/LayerInfo/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetHSlider" to="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetSpinBox" method="_on_x_offset_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetSpinBox" to="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetHSlider" method="_on_x_offset_spin_box_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetOptionButton" to="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetSpinBox" method="_on_x_offset_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetResetButton" to="VBoxContainer/Editors/TranslateEditor/GridContainer/XOffsetHSlider" method="_on_x_offset_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetHSlider" to="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetSpinBox" method="_on_y_offset_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetSpinBox" to="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetHSlider" method="_on_y_offset_spin_box_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetOptionButton" to="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetSpinBox" method="_on_y_offset_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetResetButton" to="VBoxContainer/Editors/TranslateEditor/GridContainer/YOffsetHSlider" method="_on_y_offset_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleHSlider" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleSpinBox" method="_on_x_scale_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleSpinBox" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleHSlider" method="_on_x_scale_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleResetButton" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleHSlider" method="_on_x_scale_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleResetButton" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/XScaleSpinBox" method="_on_x_scale_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleHSlider" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleSpinBox" method="_on_y_scale_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleSpinBox" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleHSlider" method="_on_y_scale_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleResetButton" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleHSlider" method="_on_y_scale_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleResetButton" to="VBoxContainer/Editors/ScaleEditor/VBoxContainer/GridContainer/YScaleSpinBox" method="_on_y_scale_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/HeightEditor/GridContainer/HeightHSlider" to="VBoxContainer/Editors/HeightEditor/GridContainer/HeightSpinBox" method="_on_height_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/HeightEditor/GridContainer/HeightSpinBox" to="VBoxContainer/Editors/HeightEditor/GridContainer/HeightHSlider" method="_on_height_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Editors/HeightEditor/GridContainer/HeightResetButton" to="VBoxContainer/Editors/HeightEditor/GridContainer/HeightHSlider" method="_on_height_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Editors/HeightEditor/GridContainer/HeightResetButton" to="VBoxContainer/Editors/HeightEditor/GridContainer/HeightSpinBox" method="_on_height_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/OpacityEditor/GridContainer/OpacityHSlider" to="VBoxContainer/Editors/OpacityEditor/GridContainer/OpacitySpinBox" method="_on_opacity_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Editors/OpacityEditor/GridContainer/OpacitySpinBox" to="VBoxContainer/Editors/OpacityEditor/GridContainer/OpacityHSlider" method="_on_opacity_spin_box_value_changed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

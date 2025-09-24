@@ -3,6 +3,9 @@ extends MarginContainer
 var layer # set by add_layer_button.gd
 
 
+func _ready():
+	$FileDialog.popup()
+
 func _on_image_button_pressed() -> void:
 	$FileDialog.popup()
 
@@ -21,3 +24,8 @@ func _on_visibility_button_toggled(toggled_on: bool) -> void:
 	else:
 		layer.show()
 		%Thumbnail.modulate.a = 1.0
+
+
+func _on_delete_button_pressed() -> void:
+	layer.queue_free()
+	queue_free()
