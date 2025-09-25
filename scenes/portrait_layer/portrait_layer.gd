@@ -16,6 +16,7 @@ func _ready():
 
 func update():
 	if texture != null:
+		#queue_redraw()
 		if max_height:
 			size.x = max_height * (float(texture.get_width()) / float(texture.get_height()))
 			size.y = max_height
@@ -44,4 +45,14 @@ func update():
 		#print("self: ", self_rect)
 		#print("dbox: ", dialoguebox_rect)
 		#print("totl: ", total_rect)
-		viewport.size.y = self_rect.size.y
+		#viewport.size.y = self_rect.size.y
+		get_parent().update()
+
+#func _draw():
+	#var viewport = get_parent().get_parent()
+	#var self_rect = get_rect()
+	#draw_circle(position, 100.0, Color.GREEN, false, 2.0)
+	## draw_rect(self_rect, Color("magenta"))
+	#print(self_rect)
+	#var dialoguebox_rect = viewport.get_node("DialogueBox").get_rect()
+	#var _total_rect = self_rect.merge(dialoguebox_rect)

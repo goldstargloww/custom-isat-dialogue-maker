@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://637ymw1hoyc7"]
+[gd_scene load_steps=27 format=3 uid="uid://637ymw1hoyc7"]
 
 [ext_resource type="Script" uid="uid://dcrmlhkwu2s0a" path="res://scenes/layer_controls/layer_controls.gd" id="1_w655t"]
 [ext_resource type="Texture2D" uid="uid://c2clr8c37ouso" path="res://assets/gui/lucide/image.svg" id="2_vtam6"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://benpb7lw8u1bq" path="res://scenes/layer_controls/opacity_button.gd" id="12_j4c4t"]
 [ext_resource type="Texture2D" uid="uid://msr7c40ggssc" path="res://assets/gui/lucide/trash-2.svg" id="13_bg5xy"]
 [ext_resource type="Script" uid="uid://jlaa21nxa7jb" path="res://scenes/layer_controls/editors.gd" id="14_l1xgh"]
-[ext_resource type="Script" uid="uid://b2qfo2oe0y011" path="res://scenes/layer_controls/delete_button.gd" id="14_pvx1h"]
 [ext_resource type="Script" uid="uid://cklc2semc56xq" path="res://scenes/layer_controls/x_offset_h_slider.gd" id="14_vtam6"]
 [ext_resource type="Script" uid="uid://bi1xtp333vbwf" path="res://scenes/layer_controls/x_offset_spin_box.gd" id="15_rabbl"]
 [ext_resource type="Script" uid="uid://cpayva817tsbo" path="res://scenes/layer_controls/y_offset_spin_box.gd" id="17_3skkd"]
@@ -119,7 +118,6 @@ script = ExtResource("12_j4c4t")
 layout_mode = 2
 tooltip_text = "Delete"
 icon = ExtResource("13_bg5xy")
-script = ExtResource("14_pvx1h")
 
 [node name="Editors" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
