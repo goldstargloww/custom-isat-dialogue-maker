@@ -3,19 +3,17 @@ extends Control
 @onready var viewport = $".."
 @onready var dialoguebox_rect = viewport.get_node("DialogueBox").get_rect()
 
+var default_max_height = 500
+var max_height = default_max_height
+
 var xoffset = 0.0
 var xoffset_mode = "%"
+var yoffset = 0.0
+var yoffset_mode = "%"
 
 func update():
 	handle_viewport()
 	handle_position()
-	
-func handle_position():
-	var children_rect = get_children_rect()
-	if xoffset_mode == "%":
-		position.x = 0 + ((xoffset / 100) * children_rect.size.x)
-	else:
-		position.x = 0 + xoffset
 	
 func get_children_rect():
 	var children = get_children()
@@ -25,6 +23,19 @@ func get_children_rect():
 		child_rect.position.y += child.max_height
 		children_rect = children_rect.merge(child_rect)
 	return children_rect
+
+func handle_position():
+	var children_rect = get_children_rect()
+	if xoffset_mode == "%":
+		position.x = ((xoffset / 100) * children_rect.size.x)
+	else:
+		position.x = xoffset
+		
+	if yoffset_mode == "%":
+		position.y = children_rect.size.y + ((yoffset / 100) * -children_rect.size.y)
+	else:
+		position.y = -yoffset + children_rect.size.y
+	
 
 func handle_viewport():
 	var total_rect = dialoguebox_rect

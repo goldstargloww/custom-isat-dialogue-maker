@@ -7,6 +7,7 @@ var default_value = -20
 
 
 func _ready():
+	value = default_value + 1 # to force it to update
 	value = default_value
 
 
@@ -18,10 +19,13 @@ func _on_x_offset_reset_button_pressed() -> void:
 	if mode == default_value_mode:
 		value = default_value
 	elif mode == "%":
-		pass
-	# TODO make this work for % -> px and px -> %
-	else:
-		value = default_value # TODO this is a temp fix
+		mode = "px"
+		value = default_value
+		mode = "%"
+	elif mode == "px":
+		mode = "%"
+		value = default_value
+		mode = "px"
 
 
 func _on_value_changed(_value: float) -> void:

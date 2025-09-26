@@ -1,9 +1,13 @@
 extends SpinBox
 
 var default_value = 0
+@onready var mode_option = $"../YOffsetOptionButton"
+@onready var mode = "%"
+@onready var default_value_mode = mode
 
 
 func _ready():
+	value = default_value + 1 # to force it to update
 	value = default_value
 	
 
@@ -12,4 +16,20 @@ func _on_y_offset_h_slider_value_changed(new_value: float) -> void:
 
 
 func _on_y_offset_reset_button_pressed() -> void:
-	value = default_value
+	if mode == default_value_mode:
+		value = default_value
+	elif mode == "%":
+		mode = "px"
+		value = default_value
+		mode = "%"
+	elif mode == "px":
+		mode = "%"
+		value = default_value
+		mode = "px"
+
+
+func _on_value_changed(_value: float) -> void:
+	mode = mode_option.get_item_text(mode_option.get_item_index(mode_option.get_selected_id()))
+	%Portrait.yoffset = value
+	%Portrait.yoffset_mode = mode
+	%Portrait.update()

@@ -24,9 +24,9 @@ func update():
 			size = texture.get_size()
 			
 		if xoffset_mode == "%":
-			position.x = 0 + ((xoffset / 100) * size.x)
+			position.x = ((xoffset / 100) * size.x)
 		else:
-			position.x = 0 + xoffset
+			position.x = xoffset
 			
 		if yoffset_mode == "%":
 			position.y = -size.y + ((yoffset / 100) * size.y)
@@ -46,7 +46,7 @@ func update():
 		#print("dbox: ", dialoguebox_rect)
 		#print("totl: ", total_rect)
 		#viewport.size.y = self_rect.size.y
-		get_parent().update()
+		#get_parent().update()
 
 #func _draw():
 	#var viewport = get_parent().get_parent()

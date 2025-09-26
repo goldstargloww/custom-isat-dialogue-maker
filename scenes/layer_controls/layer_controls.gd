@@ -15,6 +15,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	layer.texture = image
 	%Thumbnail.texture = image
 	layer.update()
+	layer.get_parent().update()
 	
 
 func _on_visibility_button_toggled(toggled_on: bool) -> void:
