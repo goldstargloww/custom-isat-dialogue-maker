@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://du2v8iiegpggc"]
+[gd_scene load_steps=13 format=3 uid="uid://du2v8iiegpggc"]
 
 [ext_resource type="Theme" uid="uid://bs684pdmvcysr" path="res://theme/no_focus.tres" id="1_l3cfh"]
 [ext_resource type="Texture2D" uid="uid://cvu4i3bf5m1l" path="res://assets/gui/border.png" id="2_6q06x"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://coxevjklv6bov" path="res://scenes/main/x_offset_spin_box.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://dqy1nf8vcvgp6" path="res://scenes/main/y_offset_h_slider.gd" id="7_yyfjg"]
 [ext_resource type="Script" uid="uid://d3ognlvdohqb5" path="res://scenes/main/y_offset_spin_box.gd" id="8_b1x3f"]
+[ext_resource type="Script" uid="uid://c0bi8obwetqxl" path="res://scenes/main/x_scale_h_slider.gd" id="9_blune"]
+[ext_resource type="Script" uid="uid://b6kllk20iwgyg" path="res://scenes/main/x_scale_spin_box.gd" id="10_th5th"]
+[ext_resource type="Script" uid="uid://bgubu01atodr1" path="res://scenes/main/y_scale_h_slider.gd" id="11_7smn1"]
+[ext_resource type="Script" uid="uid://01cvq6ctilg1" path="res://scenes/main/y_scale_spin_box.gd" id="12_raeie"]
 
 [node name="Node" type="Control"]
 layout_mode = 3
@@ -150,6 +154,7 @@ size_flags_horizontal = 3
 [node name="LayerList" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="GlobalSettings" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer"]
 layout_mode = 2
@@ -165,16 +170,23 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="OffsetGridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 columns = 5
 
-[node name="XOffsetLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="XOffsetLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 text = "x offset"
 
-[node name="XOffsetHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="XOffsetHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -185,7 +197,7 @@ allow_lesser = true
 tick_count = 3
 script = ExtResource("5_ow5a4")
 
-[node name="XOffsetSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="XOffsetSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 min_value = -200.0
 max_value = 200.0
@@ -193,7 +205,7 @@ allow_greater = true
 allow_lesser = true
 script = ExtResource("6_hujxm")
 
-[node name="XOffsetOptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="XOffsetOptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -202,15 +214,15 @@ popup/item_0/id = 1
 popup/item_1/text = "px"
 popup/item_1/id = 0
 
-[node name="XOffsetResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="XOffsetResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 text = "reset"
 
-[node name="YOffsetLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="YOffsetLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 text = "y offset"
 
-[node name="YOffsetHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="YOffsetHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -221,7 +233,7 @@ allow_lesser = true
 tick_count = 3
 script = ExtResource("7_yyfjg")
 
-[node name="YOffsetSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="YOffsetSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 min_value = -200.0
 max_value = 200.0
@@ -229,7 +241,7 @@ allow_greater = true
 allow_lesser = true
 script = ExtResource("8_b1x3f")
 
-[node name="YOffsetOptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="YOffsetOptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -238,7 +250,68 @@ popup/item_0/id = 1
 popup/item_1/text = "px"
 popup/item_1/id = 0
 
-[node name="YOffsetResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer"]
+[node name="YOffsetResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="ScaleLinkCheckButton" type="CheckButton" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "link x and y scale"
+
+[node name="ScaleGridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="XScaleLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+text = "x scale"
+
+[node name="XScaleHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 200.0
+value = 100.0
+allow_greater = true
+tick_count = 3
+script = ExtResource("9_blune")
+
+[node name="XScaleSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+allow_greater = true
+suffix = "%"
+script = ExtResource("10_th5th")
+
+[node name="XScaleResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="YScaleLabel" type="Label" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+text = "x scale"
+
+[node name="YScaleHSlider" type="HSlider" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 200.0
+value = 100.0
+allow_greater = true
+tick_count = 3
+script = ExtResource("11_7smn1")
+
+[node name="YScaleSpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+allow_greater = true
+suffix = "%"
+script = ExtResource("12_raeie")
+
+[node name="YScaleResetButton" type="Button" parent="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer"]
 layout_mode = 2
 text = "reset"
 
@@ -248,11 +321,21 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/AddLayerButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/AddLayerButton" method="_on_pressed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetSpinBox" method="_on_x_offset_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetHSlider" method="_on_x_offset_spin_box_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetSpinBox" method="_on_value_changed"]
-[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/XOffsetSpinBox" method="_on_x_offset_reset_button_pressed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetSpinBox" method="_on_y_offset_h_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetHSlider" method="_on_y_offset_spin_box_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetSpinBox" method="_on_value_changed"]
-[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/GridContainer/YOffsetSpinBox" method="_on_y_offset_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetSpinBox" method="_on_x_offset_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetHSlider" method="_on_x_offset_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetSpinBox" method="_on_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/XOffsetSpinBox" method="_on_x_offset_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetSpinBox" method="_on_y_offset_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetHSlider" method="_on_y_offset_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetSpinBox" method="_on_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/OffsetGridContainer/YOffsetSpinBox" method="_on_y_offset_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" method="_on_x_scale_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleHSlider" method="_on_x_scale_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" method="_on_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" method="_on_x_scale_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" method="_on_x_scale_reset_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleHSlider" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" method="_on_y_scale_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/XScaleSpinBox" method="_on_y_scale_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleHSlider" method="_on_y_scale_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" method="_on_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleResetButton" to="VBoxContainer/HSplitContainer/RightSide/TabContainer/Portrait/HBoxContainer/GlobalSettings/PanelContainer/MarginContainer/VBoxContainer/ScaleGridContainer/YScaleSpinBox" method="_on_y_scale_reset_button_pressed"]

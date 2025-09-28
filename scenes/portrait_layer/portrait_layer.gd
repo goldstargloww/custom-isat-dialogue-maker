@@ -15,44 +15,34 @@ func _ready():
 	pass
 
 func update():
-	if texture != null:
-		#queue_redraw()
-		if max_height:
-			size.x = max_height * (float(texture.get_width()) / float(texture.get_height()))
-			size.y = max_height
-		else:
-			size = texture.get_size()
-			
-		if xoffset_mode == "%":
-			position.x = ((xoffset / 100) * size.x)
-		else:
-			position.x = xoffset
-			
-		if yoffset_mode == "%":
-			position.y = -size.y + ((yoffset / 100) * size.y)
-		else:
-			position.y = -size.y + yoffset
-			
-		modulate.a = opacity / 100
-			
-		@warning_ignore("integer_division")
-		size = Vector2(size.x * (xscale / 100), size.y * (yscale / 100))
+	size.x = texture.get_width()
+	size.y = texture.get_height()
+	if size.y > max_height:
+		size.x = max_height * (size.x / size.y) * (xscale / 100.0)
+		size.y = max_height * (yscale / 100.0)
+	else:
+		size.x *= xscale / 100.0
+		size.y *= yscale / 100.0
 		
-		var viewport = get_parent().get_parent()
-		var self_rect = get_rect()
-		var dialoguebox_rect = viewport.get_node("DialogueBox").get_rect()
-		var _total_rect = self_rect.merge(dialoguebox_rect)
-		#print("self: ", self_rect)
-		#print("dbox: ", dialoguebox_rect)
-		#print("totl: ", total_rect)
-		#viewport.size.y = self_rect.size.y
-		#get_parent().update()
-
-#func _draw():
-	#var viewport = get_parent().get_parent()
-	#var self_rect = get_rect()
-	#draw_circle(position, 100.0, Color.GREEN, false, 2.0)
-	## draw_rect(self_rect, Color("magenta"))
-	#print(self_rect)
-	#var dialoguebox_rect = viewport.get_node("DialogueBox").get_rect()
-	#var _total_rect = self_rect.merge(dialoguebox_rect)
+	if xoffset_mode == "%":
+		position.x = ((xoffset / 100) * size.x)
+	else:
+		position.x = xoffset
+		
+	if yoffset_mode == "%":
+		position.y = -size.y + ((yoffset / 100) * size.y)
+	else:
+		position.y = -size.y + yoffset
+		
+	modulate.a = opacity / 100
+		
+	
+	var viewport = get_parent().get_parent()
+	var self_rect = get_rect()
+	var dialoguebox_rect = viewport.get_node("DialogueBox").get_rect()
+	var _total_rect = self_rect.merge(dialoguebox_rect)
+	#print("self: ", self_rect)
+	#print("dbox: ", dialoguebox_rect)
+	#print("totl: ", _total_rect)
+	#viewport.size.y = self_rect.size.y
+	get_parent().update()

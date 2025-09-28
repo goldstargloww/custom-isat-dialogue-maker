@@ -10,22 +10,46 @@ var xoffset = 0.0
 var xoffset_mode = "%"
 var yoffset = 0.0
 var yoffset_mode = "%"
+var xscale = 100.0
+var yscale = 100.0
 
 func update():
 	handle_viewport()
+	handle_size()
 	handle_position()
-	
+
+
 func get_children_rect():
 	var children = get_children()
-	var children_rect = Rect2()
-	for child in children:
-		var child_rect = child.get_rect()
-		child_rect.position.y += child.max_height
-		children_rect = children_rect.merge(child_rect)
-	return children_rect
+	if children:
+		var children_rect = false
+		for child in children:
+			var child_rect = child.get_rect()
+			child_rect.position.y += child.max_height
+			if children_rect:
+				children_rect = children_rect.merge(child_rect)
+			else: children_rect = child_rect
+		return children_rect
+	else:
+		return Rect2()
+
+
+func handle_size():
+	var children_rect = get_children_rect()
+	print("children rect: ", children_rect)
+	size.x = children_rect.size.x
+	size.y = children_rect.size.y
+	print(size)
+	if size.y > max_height:
+		size.x = max_height * (size.x / size.y) * (xscale / 100.0)
+		size.y = max_height * (yscale / 100.0)
+	else:
+		size.x *= xscale / 100.0
+		size.y *= yscale / 100.0
+
 
 func handle_position():
-	var children_rect = get_children_rect()
+	var children_rect = get_rect()
 	if xoffset_mode == "%":
 		position.x = ((xoffset / 100) * children_rect.size.x)
 	else:
@@ -35,13 +59,13 @@ func handle_position():
 		position.y = children_rect.size.y + ((yoffset / 100) * -children_rect.size.y)
 	else:
 		position.y = -yoffset + children_rect.size.y
-	
+
 
 func handle_viewport():
 	var total_rect = dialoguebox_rect
 
-	total_rect = get_children_rect().merge(dialoguebox_rect)
-	#print("children ", children_rect, ", total ", total_rect)
+	total_rect = get_rect().merge(dialoguebox_rect)
+	#print("children ", get_children_rect(), ", total ", total_rect)
 	
 	viewport.size.y = total_rect.size.y
 	
